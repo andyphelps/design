@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace workshop1.services
+﻿namespace workshop1.services
 {
     public static class MetadataService
     {

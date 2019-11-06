@@ -1,18 +1,20 @@
 package uk.gov.ukho.dpworkshops.one;
 
+import uk.gov.ukho.dpworkshops.one.builders.DatasetBuilder;
 import uk.gov.ukho.dpworkshops.one.facades.CreateDatasetFacade;
-import uk.gov.ukho.dpworkshops.one.validators.DataValidators;
+import uk.gov.ukho.dpworkshops.one.models.Dataset;
 
 public class Main {
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    final String content = "1,2,3\n" +
-        "4,5,6\n" +
-        "7,8,9";
+        final Dataset dataset = DatasetBuilder
+                .builder()
+                .addRow("1,2,3")
+                .addRow("4,5,6")
+                .addRow("7,8,9")
+                .description("3x3 Matrix of first nine numbers")
+                .build();
 
-      CreateDatasetFacade.createDataset(content,
-              "3x3 Matrix of first nine numbers",
-              "Andy Phelps",
-              DataValidators::csvValidator);
-  }
+        CreateDatasetFacade.createDataset(dataset);
+    }
 }

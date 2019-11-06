@@ -9,5 +9,7 @@
     <Folder Include="services\" />
     <Folder Include="validators\" />
     <Folder Include="facades\" />
+    <Folder Include="models\" />
+    <Folder Include="builders\" />
   </ItemGroup>
 </Project>
