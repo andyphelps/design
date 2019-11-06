@@ -30,7 +30,7 @@ public class DatasetBuilder {
         return this;
     }
 
-    public DatasetBuilder addRow(String row) {
+    public DatasetBuilder addRow(final String row) {
         this.content += row + "\n";
         return this;
     }

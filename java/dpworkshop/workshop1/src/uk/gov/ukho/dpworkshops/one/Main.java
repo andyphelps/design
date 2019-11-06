@@ -5,7 +5,7 @@ import uk.gov.ukho.dpworkshops.one.facades.CreateDatasetFacade;
 import uk.gov.ukho.dpworkshops.one.models.Dataset;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         final Dataset dataset = DatasetBuilder
                 .builder()
