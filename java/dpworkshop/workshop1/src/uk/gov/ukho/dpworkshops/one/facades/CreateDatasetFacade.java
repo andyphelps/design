@@ -18,6 +18,7 @@ public class CreateDatasetFacade {
         if (isValid) {
             final int id = MetadataService.createMetadata(description, author);
             final Boolean wasSuccessful = UploadService.uploadData(id, content);
+
             if (wasSuccessful) {
                 ActivationService.activate(id);
             }
