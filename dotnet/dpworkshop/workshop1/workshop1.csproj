@@ -8,5 +8,6 @@
   <ItemGroup>
     <Folder Include="services\" />
     <Folder Include="validators\" />
+    <Folder Include="facades\" />
   </ItemGroup>
 </Project>
