@@ -1,5 +1,7 @@
 package uk.gov.ukho.dpworkshops.two.facades;
 
+import uk.gov.ukho.dpworkshops.two.events.EventManager;
+import uk.gov.ukho.dpworkshops.two.events.EventType;
 import uk.gov.ukho.dpworkshops.two.models.Dataset;
 import uk.gov.ukho.dpworkshops.two.services.ActivationService;
 import uk.gov.ukho.dpworkshops.two.services.MetadataService;
@@ -16,7 +18,9 @@ public class CreateDatasetFacade {
             final Boolean wasSuccessful = UploadService.uploadData(id, dataset.getContent());
 
             if (wasSuccessful) {
+                EventManager.getInstance().emit(EventType.DATASET_ADDED, dataset);
                 ActivationService.activate(id);
+                EventManager.getInstance().emit(EventType.DATASET_ACTIVATED, dataset);
             }
         }
     }
