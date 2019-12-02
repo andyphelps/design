@@ -18,8 +18,12 @@ public final class EventManager {
         Arrays.stream(EventType.values()).forEach(eventType -> subscribers.put(eventType, new ArrayList<>()));
     }
 
-    public void subscribe(final EventType eventType, final EventListener eventListener) {
+    public void subscribe(final EventListener eventListener, final EventType eventType, final EventType... eventTypes) {
         subscribers.get(eventType).add(eventListener);
+
+        Arrays.stream(eventTypes).forEach(
+                eventTypeInVarArgs -> subscribers.get(eventTypeInVarArgs).add(eventListener)
+        );
     }
 
     public void unsubscribe(final EventType eventType, final EventListener eventListener) {
