@@ -10,9 +10,7 @@ import uk.gov.ukho.dpworkshops.two.models.Dataset;
 public class Main {
   public static void main(final String[] args) {
 
-    final EventManager eventManager = new EventManager();
-
-    eventManager.subscribe(new DatasetLogger(), EventType.DATASET_UPLOADED, EventType.DATASET_ACTIVATED);
+    EventManager.getInstance().subscribe(new DatasetLogger(), EventType.DATASET_UPLOADED, EventType.DATASET_ACTIVATED);
 
     final Dataset dataset = DatasetBuilder
         .builder()
@@ -22,6 +20,6 @@ public class Main {
         .description("3x3 Matrix of first nine numbers")
         .build();
 
-    CreateDatasetFacade.createDataset(dataset, eventManager);
+    CreateDatasetFacade.createDataset(dataset);
   }
 }

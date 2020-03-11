@@ -10,7 +10,7 @@ import uk.gov.ukho.dpworkshops.two.services.ValidationService;
 
 public class CreateDatasetFacade {
 
-  public static void createDataset(final Dataset dataset, final EventManager eventManager) {
+  public static void createDataset(final Dataset dataset) {
     final Boolean isValid = ValidationService.validate(dataset.getValidator(), dataset.getContent());
 
     if (isValid) {
@@ -18,9 +18,9 @@ public class CreateDatasetFacade {
       final Boolean wasSuccessful = UploadService.uploadData(id, dataset.getContent());
 
       if (wasSuccessful) {
-        eventManager.emit(EventType.DATASET_UPLOADED, dataset);
+        EventManager.getInstance().emit(EventType.DATASET_UPLOADED, dataset);
         ActivationService.activate(id);
-        eventManager.emit(EventType.DATASET_ACTIVATED, dataset);
+        EventManager.getInstance().emit(EventType.DATASET_ACTIVATED, dataset);
       }
     }
   }

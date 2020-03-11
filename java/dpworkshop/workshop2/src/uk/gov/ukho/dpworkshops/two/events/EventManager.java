@@ -7,10 +7,24 @@ import java.util.*;
 public final class EventManager {
 
   private final Map<EventType, List<EventListener>> subscribers;
+  private static volatile EventManager instance;
 
-  public EventManager() {
+  private EventManager() {
     this.subscribers = new HashMap<>();
     Arrays.stream(EventType.values()).forEach(eventType -> subscribers.put(eventType, new ArrayList<>()));
+  }
+
+  public static EventManager getInstance() {
+    final EventManager localEventListener = instance;
+    if (localEventListener != null) {
+      return localEventListener;
+    }
+    synchronized (EventManager.class) {
+      if (instance == null) {
+        instance = new EventManager();
+      }
+      return instance;
+    }
   }
 
   public void subscribe(final EventListener eventListener, final EventType eventType, final EventType... eventTypes) {
